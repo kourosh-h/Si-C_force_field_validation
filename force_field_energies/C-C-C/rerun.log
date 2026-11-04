@@ -1,0 +1,907 @@
+                      :-) GROMACS - gmx mdrun, 2025.3 (-:
+
+Copyright 1991-2025 The GROMACS Authors.
+GROMACS is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
+as published by the Free Software Foundation; either version 2.1
+of the License, or (at your option) any later version.
+
+                         Current GROMACS contributors:
+       Mark Abraham           Andrey Alekseenko           Brian Andrews       
+      Vladimir Basov              Paul Bauer                Hugh Bird         
+      Eliane Briand               Ania Brown              Mahesh Doijade      
+      Giacomo Fiorin          Stefan Fleischmann          Sergey Gorelov      
+   Gilles Gouaillardet            Alan Gray              M. Eric Irrgang      
+   Farzaneh Jalalypour         Petter Johansson          Carsten Kutzner      
+    Grzegorz Łazarski         Justin A. Lemkul          Magnus Lundborg      
+       Pascal Merz             Vedran Miletić            Dmitry Morozov      
+     Lukas Müllender            Julien Nabet             Szilárd Páll      
+ Andrea Pasquadibisceglie     Michele Pellegrino         Nicola Piasentin     
+     Daniele Rapetti         Muhammad Umair Sadiq         Hubert Santuz       
+      Roland Schulz             Michael Shirts           Tatiana Shugaeva     
+     Alexey Shvetsov            Philip Turner            Alessandra Villa     
+ Sebastian Wingbermühle  
+
+                         Previous GROMACS contributors:
+        Emile Apol             Rossen Apostolov           James Barnett       
+  Herman J.C. Berendsen         Cathrine Bergh             Par Bjelkmar       
+      Christian Blau          Viacheslav Bolnykh            Kevin Boyd        
+    Aldert van Buuren          Carlo Camilloni           Rudi van Drunen      
+      Anton Feenstra           Oliver Fleetwood            Vytas Gapsys       
+       Gaurav Garg             Gerrit Groenhof            Bert de Groot       
+      Anca Hamuraru           Vincent Hindriksen          Victor Holanda      
+     Aleksei Iupinov              Joe Jordan            Christoph Junghans    
+    Prashanth Kanduri        Dimitrios Karkoulis           Peter Kasson       
+      Sebastian Kehl           Sebastian Keller             Jiri Kraus        
+       Per Larsson              Viveca Lindahl            Erik Marklund       
+    Pieter Meulenhoff           Teemu Murtola              Sander Pronk       
+      Alfons Sijbers            Balint Soproni         David van der Spoel    
+      Peter Tieleman            Carsten Uphoff             Jon Vincent        
+     Teemu Virolainen         Christian Wennberg           Maarten Wolf       
+      Artem Zhmurov       
+
+                  Coordinated by the GROMACS project leaders:
+                           Berk Hess and Erik Lindahl
+
+GROMACS:      gmx mdrun, version 2025.3
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Process ID:   61221
+Command line:
+  gmx mdrun -s rerun.tpr -rerun frames.g96 -deffnm rerun -nt 1
+
+GROMACS version:     2025.3
+Precision:           mixed
+Memory model:        64 bit
+MPI library:         thread_mpi
+OpenMP support:      disabled
+GPU support:         disabled
+SIMD instructions:   ARM_NEON_ASIMD
+CPU FFT library:     fftw-3.3.10
+GPU FFT library:     none
+Multi-GPU FFT:       none
+TNG support:         enabled
+Hwloc support:       disabled
+Tracing support:     disabled
+C compiler:          /usr/bin/cc AppleClang 17.0.0.17000319
+C compiler flags:    -Wno-unknown-pragmas -Wno-missing-field-initializers -fno-stack-check -O3 -DNDEBUG
+C++ compiler:        /usr/bin/c++ AppleClang 17.0.0.17000319
+C++ compiler flags:  -Wno-unknown-pragmas -Wno-reserved-identifier -Wno-missing-field-initializers -fno-stack-check -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-source-uses-openmp -Wno-c++17-extensions -Wno-documentation-unknown-command -Wno-covered-switch-default -Wno-switch-enum -Wno-switch-default -Wno-extra-semi-stmt -Wno-weak-vtables -Wno-shadow -Wno-padded -Wno-reserved-id-macro -Wno-double-promotion -Wno-exit-time-destructors -Wno-global-constructors -Wno-documentation -Wno-format-nonliteral -Wno-used-but-marked-unused -Wno-float-equal -Wno-conditional-uninitialized -Wno-conversion -Wno-disabled-macro-expansion -Wno-unused-macros -Wno-unsafe-buffer-usage -Wno-cast-function-type-strict -O3 -DNDEBUG
+BLAS library:        External - detected on the system
+LAPACK library:      External - detected on the system
+
+
+Running on 1 node with total 0 processing units
+Hardware detected
+  CPU info:
+    Vendor: ARM
+    Brand:  Unknown CPU brand
+    Family: 0   Model: 0   Stepping: 0
+    Features: neon neon_asimd
+  Hardware topology: Only logical processor count
+    CPU limit set by OS: -1   Recommended max number of threads: 8
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+M. J. Abraham, T. Murtola, R. Schulz, S. Páll, J. C. Smith, B. Hess, E.
+Lindahl
+GROMACS: High performance molecular simulations through multi-level
+parallelism from laptops to supercomputers
+SoftwareX (2015)
+DOI: 10.1016/j.softx.2015.06.001
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+S. Páll, M. J. Abraham, C. Kutzner, B. Hess, E. Lindahl
+Tackling Exascale Software Challenges in Molecular Dynamics Simulations with
+GROMACS
+In S. Markidis & E. Laure (Eds.), Solving Software Challenges for Exascale (2015)
+DOI: 10.1007/978-3-319-15976-8_1
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+S. Pronk, S. Páll, R. Schulz, P. Larsson, P. Bjelkmar, R. Apostolov, M. R.
+Shirts, J. C. Smith, P. M. Kasson, D. van der Spoel, B. Hess, E. Lindahl
+GROMACS 4.5: a high-throughput and highly parallel open source molecular
+simulation toolkit
+Bioinformatics (2013)
+DOI: 10.1093/bioinformatics/btt055
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+B. Hess, C. Kutzner, D. van der Spoel, E. Lindahl
+GROMACS 4: Algorithms for highly efficient, load-balanced, and scalable
+molecular simulation
+J. Chem. Theory Comput. (2008)
+DOI: 10.1021/ct700301q
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+D. van der Spoel, E. Lindahl, B. Hess, G. Groenhof, A. E. Mark, H. J. C.
+Berendsen
+GROMACS: Fast, Flexible and Free
+J. Comp. Chem. (2005)
+DOI: 10.1002/jcc.20291
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+E. Lindahl, B. Hess, D. van der Spoel
+GROMACS 3.0: A package for molecular simulation and trajectory analysis
+J. Mol. Mod. (2001)
+DOI: 10.1007/s008940100045
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+H. J. C. Berendsen, D. van der Spoel and R. van Drunen
+GROMACS: A message-passing parallel molecular dynamics implementation
+Comp. Phys. Comm. (1995)
+DOI: 10.1016/0010-4655(95)00042-E
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE CITE THE DOI FOR THIS VERSION OF GROMACS ++++
+https://doi.org/10.5281/zenodo.16992621
+-------- -------- --- Thank You --- -------- --------
+
+Input Parameters:
+   integrator                     = md
+   tinit                          = 0
+   dt                             = 0.001
+   nsteps                         = 0
+   init-step                      = 0
+   simulation-part                = 1
+   mts                            = false
+   mass-repartition-factor        = 1
+   comm-mode                      = Linear
+   nstcomm                        = 100
+   bd-fric                        = 0
+   ld-seed                        = -69796355
+   emtol                          = 10
+   emstep                         = 0.01
+   niter                          = 20
+   fcstep                         = 0
+   nstcgsteep                     = 1000
+   nbfgscorr                      = 10
+   rtpi                           = 0.05
+   nstxout                        = 0
+   nstvout                        = 0
+   nstfout                        = 0
+   nstlog                         = 1000
+   nstcalcenergy                  = 1
+   nstenergy                      = 1
+   nstxout-compressed             = 0
+   compressed-x-precision         = 1000
+   cutoff-scheme                  = Verlet
+   nstlist                        = 10
+   pbc                            = xyz
+   periodic-molecules             = false
+   verlet-buffer-tolerance        = -1
+   verlet-buffer-pressure-tolerance = -1
+   rlist                          = 4
+   coulombtype                    = Cut-off
+   coulomb-modifier               = Potential-shift
+   rcoulomb-switch                = 0
+   rcoulomb                       = 4
+   epsilon-r                      = 1
+   epsilon-rf                     = inf
+   vdw-type                       = Cut-off
+   vdw-modifier                   = Potential-shift
+   rvdw-switch                    = 0
+   rvdw                           = 4
+   DispCorr                       = No
+   table-extension                = 1
+   fourierspacing                 = 0.12
+   fourier-nx                     = 0
+   fourier-ny                     = 0
+   fourier-nz                     = 0
+   pme-order                      = 4
+   ewald-rtol                     = 1e-05
+   ewald-rtol-lj                  = 0.001
+   lj-pme-comb-rule               = Geometric
+   ewald-geometry                 = 3d
+   epsilon-surface                = 0
+   ensemble-temperature-setting   = not available
+   tcoupl                         = No
+   nsttcouple                     = -1
+   nh-chain-length                = 0
+   print-nose-hoover-chain-variables = false
+   pcoupl                         = No
+   refcoord-scaling               = No
+   posres-com: not available
+   posres-comB: not available
+   QMMM                           = false
+qm-opts:
+   ngQM                           = 0
+   constraint-algorithm           = Lincs
+   continuation                   = true
+   Shake-SOR                      = false
+   shake-tol                      = 0.0001
+   lincs-order                    = 4
+   lincs-iter                     = 1
+   lincs-warnangle                = 30
+   nwall                          = 0
+   wall-type                      = 9-3
+   wall-r-linpot                  = -1
+   wall-atomtype[0]               = -1
+   wall-atomtype[1]               = -1
+   wall-density[0]                = 0
+   wall-density[1]                = 0
+   wall-ewald-zfac                = 3
+   pull                           = false
+   awh                            = false
+   rotation                       = false
+   interactiveMD                  = false
+   disre                          = No
+   disre-weighting                = Conservative
+   disre-mixed                    = false
+   dr-fc                          = 1000
+   dr-tau                         = 0
+   nstdisreout                    = 100
+   orire-fc                       = 0
+   orire-tau                      = 0
+   nstorireout                    = 100
+   free-energy                    = no
+   cos-acceleration               = 0
+   deform (3x3):
+      deform[    0]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      deform[    1]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      deform[    2]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+   simulated-tempering            = false
+   swapcoords                     = no
+   userint1                       = 0
+   userint2                       = 0
+   userint3                       = 0
+   userint4                       = 0
+   userreal1                      = 0
+   userreal2                      = 0
+   userreal3                      = 0
+   userreal4                      = 0
+   applied-forces:
+     electric-field:
+       x:
+         E0                       = 0
+         omega                    = 0
+         t0                       = 0
+         sigma                    = 0
+       y:
+         E0                       = 0
+         omega                    = 0
+         t0                       = 0
+         sigma                    = 0
+       z:
+         E0                       = 0
+         omega                    = 0
+         t0                       = 0
+         sigma                    = 0
+     density-guided-simulation:
+       active                     = false
+       group                      = protein
+       similarity-measure         = inner-product
+       atom-spreading-weight      = unity
+       force-constant             = 1e+09
+       gaussian-transform-spreading-width = 0.2
+       gaussian-transform-spreading-range-in-multiples-of-width = 4
+       reference-density-filename = reference.mrc
+       nst                        = 1
+       normalize-densities        = true
+       adaptive-force-scaling     = false
+       adaptive-force-scaling-time-constant = 4
+       shift-vector               = 
+       transformation-matrix      = 
+     qmmm-cp2k:
+       active                     = false
+       qmgroup                    = System
+       qmmethod                   = PBE
+       qmfilenames                = 
+       qmcharge                   = 0
+       qmmultiplicity             = 1
+     colvars:
+       active                     = false
+       configfile                 = 
+       seed                       = -1
+     nnpot:
+       active                     = false
+       modelfile                  = model.pt
+       input-group                = System
+       model-input1               = 
+       model-input2               = 
+       model-input3               = 
+       model-input4               = 
+grpopts:
+   nrdf:          93
+   ref-t:           0
+   tau-t:           0
+annealing:          No
+annealing-npoints:           0
+   acc:	           0           0           0
+   nfreeze:           N           N           N
+   energygrp-flags[  0]: 0
+
+Rerun trajectory contains velocities. Rerun does only evaluate potential energy and forces. The velocities will be ignored.
+Can not increase nstlist because an NVE ensemble is used
+
+When checking whether update groups are usable:
+  Rerun does not support update groups
+  Domain decomposition is not active, so there is no need for update groups
+  No constraints or virtual sites are in use, so it is best not to use update groups
+
+Local state does not use filler particles
+
+Using 1 MPI thread
+System total charge: 0.190
+Potential shift: LJ r^-12: -5.960e-08 r^-6: -2.441e-04, Coulomb -2e-01
+Generated table with 2500 data points for 1-4 COUL.
+Tabscale = 500 points/nm
+Generated table with 2500 data points for 1-4 LJ6.
+Tabscale = 500 points/nm
+Generated table with 2500 data points for 1-4 LJ12.
+Tabscale = 500 points/nm
+
+
+Using SIMD4xM 4x4 nonbonded short-range kernels
+
+Using a 4x4 pair-list setup:
+  updated every 10 steps, buffer 0.000 nm, rlist 4.000 nm
+
+The average pressure is off by at most 0.00 bar due to missing LJ interactions
+
+Using Lorentz-Berthelot Lennard-Jones combination rule
+
+Note that it is planned that the command gmx mdrun -rerun will be available in a different form in a future version of GROMACS, e.g. gmx rerun -f.
+There are: 32 Atoms
+
+Started mdrun on rank 0 Tue Nov  3 03:53:15 2026
+
+
+Rerun does not report kinetic energy, total energy, temperature, virial and pressure.
+           Step           Time
+              0        0.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.48548e+01    4.34623e+01    3.73029e+01    1.00912e+00   -5.36099e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -7.14548e+00    1.65196e+02   -2.71420e+02
+
+           Step           Time
+              1        1.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.46557e+01    4.17293e+01    3.72863e+01    7.49372e-01   -5.35993e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -7.35577e+00    1.65154e+02   -2.73774e+02
+
+           Step           Time
+              2        2.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.44707e+01    4.00884e+01    3.72722e+01    5.02431e-01   -5.35894e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -7.54707e+00    1.65112e+02   -2.75995e+02
+
+           Step           Time
+              3        3.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.43027e+01    3.85269e+01    3.72605e+01    2.70699e-01   -5.35803e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -7.72042e+00    1.65073e+02   -2.78090e+02
+
+           Step           Time
+              4        4.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.41447e+01    3.70412e+01    3.72510e+01    5.36146e-02   -5.35717e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -7.87685e+00    1.65035e+02   -2.80068e+02
+
+           Step           Time
+              5        5.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.40006e+01    3.56304e+01    3.72430e+01   -1.49622e-01   -5.35636e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.01764e+00    1.64999e+02   -2.81930e+02
+
+           Step           Time
+              6        6.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.38697e+01    3.42917e+01    3.72363e+01   -3.39568e-01   -5.35558e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.14390e+00    1.64965e+02   -2.83678e+02
+
+           Step           Time
+              7        7.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.37476e+01    3.30264e+01    3.72309e+01   -5.16810e-01   -5.35482e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.25678e+00    1.64932e+02   -2.85318e+02
+
+           Step           Time
+              8        8.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.36350e+01    3.18315e+01    3.72263e+01   -6.81771e-01   -5.35408e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.35735e+00    1.64900e+02   -2.86854e+02
+
+           Step           Time
+              9        9.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.35344e+01    3.07089e+01    3.72226e+01   -8.35143e-01   -5.35337e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.44654e+00    1.64870e+02   -2.88282e+02
+
+           Step           Time
+             10       10.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.34408e+01    2.96577e+01    3.72199e+01   -9.77339e-01   -5.35266e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.52528e+00    1.64841e+02   -2.89610e+02
+
+           Step           Time
+             11       11.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.33563e+01    2.86777e+01    3.72181e+01   -1.10875e+00   -5.35198e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.59446e+00    1.64812e+02   -2.90837e+02
+
+           Step           Time
+             12       12.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.32786e+01    2.77698e+01    3.72171e+01   -1.23006e+00   -5.35131e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.65492e+00    1.64785e+02   -2.91965e+02
+
+           Step           Time
+             13       13.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.32068e+01    2.69330e+01    3.72167e+01   -1.34157e+00   -5.35065e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.70737e+00    1.64759e+02   -2.92998e+02
+
+           Step           Time
+             14       14.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.31438e+01    2.61672e+01    3.72172e+01   -1.44362e+00   -5.35000e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.75253e+00    1.64734e+02   -2.93934e+02
+
+           Step           Time
+             15       15.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.30848e+01    2.54739e+01    3.72183e+01   -1.53683e+00   -5.34938e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.79106e+00    1.64710e+02   -2.94778e+02
+
+           Step           Time
+             16       16.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.30306e+01    2.48525e+01    3.72202e+01   -1.62158e+00   -5.34876e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.82356e+00    1.64687e+02   -2.95530e+02
+
+           Step           Time
+             17       17.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.29821e+01    2.43034e+01    3.72226e+01   -1.69806e+00   -5.34815e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.85060e+00    1.64666e+02   -2.96190e+02
+
+           Step           Time
+             18       18.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.29363e+01    2.38260e+01    3.72258e+01   -1.76693e+00   -5.34756e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.87266e+00    1.64645e+02   -2.96762e+02
+
+           Step           Time
+             19       19.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.28954e+01    2.34203e+01    3.72295e+01   -1.82846e+00   -5.34698e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.89022e+00    1.64625e+02   -2.97246e+02
+
+           Step           Time
+             20       20.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.28581e+01    2.30883e+01    3.72340e+01   -1.88290e+00   -5.34641e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.90373e+00    1.64607e+02   -2.97640e+02
+
+           Step           Time
+             21       21.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.28229e+01    2.28286e+01    3.72391e+01   -1.93072e+00   -5.34585e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.91357e+00    1.64590e+02   -2.97949e+02
+
+           Step           Time
+             22       22.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.27920e+01    2.26420e+01    3.72446e+01   -1.97228e+00   -5.34531e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.92009e+00    1.64573e+02   -2.98171e+02
+
+           Step           Time
+             23       23.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.27621e+01    2.25281e+01    3.72509e+01   -2.00775e+00   -5.34478e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.92363e+00    1.64558e+02   -2.98310e+02
+
+           Step           Time
+             24       24.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.27351e+01    2.24870e+01    3.72577e+01   -2.03744e+00   -5.34425e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.92448e+00    1.64544e+02   -2.98363e+02
+
+           Step           Time
+             25       25.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.27111e+01    2.25198e+01    3.72650e+01   -2.06186e+00   -5.34375e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.92289e+00    1.64531e+02   -2.98333e+02
+
+           Step           Time
+             26       26.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.26873e+01    2.26249e+01    3.72729e+01   -2.08090e+00   -5.34325e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.91913e+00    1.64519e+02   -2.98221e+02
+
+           Step           Time
+             27       27.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.26667e+01    2.28037e+01    3.72813e+01   -2.09516e+00   -5.34276e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.91338e+00    1.64508e+02   -2.98025e+02
+
+           Step           Time
+             28       28.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.26475e+01    2.30560e+01    3.72903e+01   -2.10472e+00   -5.34228e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.90587e+00    1.64498e+02   -2.97747e+02
+
+           Step           Time
+             29       29.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.26285e+01    2.33823e+01    3.72997e+01   -2.10985e+00   -5.34182e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.89675e+00    1.64489e+02   -2.97389e+02
+
+           Step           Time
+             30       30.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.26116e+01    2.37818e+01    3.73096e+01   -2.11082e+00   -5.34136e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.88618e+00    1.64481e+02   -2.96949e+02
+
+           Step           Time
+             31       31.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.25963e+01    2.42548e+01    3.73200e+01   -2.10766e+00   -5.34091e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.87430e+00    1.64474e+02   -2.96428e+02
+
+           Step           Time
+             32       32.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.25805e+01    2.48016e+01    3.73310e+01   -2.10066e+00   -5.34047e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.86124e+00    1.64468e+02   -2.95828e+02
+
+           Step           Time
+             33       33.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.25665e+01    2.54228e+01    3.73424e+01   -2.09016e+00   -5.34004e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.84709e+00    1.64463e+02   -2.95147e+02
+
+           Step           Time
+             34       34.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.25546e+01    2.61169e+01    3.73541e+01   -2.07611e+00   -5.33962e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.83195e+00    1.64459e+02   -2.94386e+02
+
+           Step           Time
+             35       35.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.25405e+01    2.68850e+01    3.73663e+01   -2.05876e+00   -5.33921e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.81592e+00    1.64455e+02   -2.93549e+02
+
+           Step           Time
+             36       36.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.25282e+01    2.77270e+01    3.73789e+01   -2.03824e+00   -5.33880e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.79905e+00    1.64452e+02   -2.92631e+02
+
+           Step           Time
+             37       37.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.25173e+01    2.86420e+01    3.73920e+01   -2.01478e+00   -5.33841e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.78141e+00    1.64451e+02   -2.91635e+02
+
+           Step           Time
+             38       38.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.25055e+01    2.96317e+01    3.74055e+01   -1.98843e+00   -5.33802e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.76306e+00    1.64450e+02   -2.90561e+02
+
+           Step           Time
+             39       39.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.24965e+01    3.06938e+01    3.74193e+01   -1.95929e+00   -5.33764e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.74403e+00    1.64450e+02   -2.89408e+02
+
+           Step           Time
+             40       40.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.24846e+01    3.18314e+01    3.74336e+01   -1.92767e+00   -5.33727e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.72438e+00    1.64451e+02   -2.88179e+02
+
+           Step           Time
+             41       41.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.24762e+01    3.30402e+01    3.74481e+01   -1.89343e+00   -5.33690e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.70413e+00    1.64452e+02   -2.86871e+02
+
+           Step           Time
+             42       42.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.24675e+01    3.43236e+01    3.74631e+01   -1.85690e+00   -5.33654e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.68330e+00    1.64454e+02   -2.85486e+02
+
+           Step           Time
+             43       43.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.24582e+01    3.56802e+01    3.74784e+01   -1.81799e+00   -5.33618e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.66194e+00    1.64457e+02   -2.84024e+02
+
+           Step           Time
+             44       44.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.24505e+01    3.71105e+01    3.74940e+01   -1.77695e+00   -5.33584e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.64004e+00    1.64461e+02   -2.82485e+02
+
+           Step           Time
+             45       45.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.24415e+01    3.86132e+01    3.75099e+01   -1.73372e+00   -5.33549e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.61762e+00    1.64465e+02   -2.80871e+02
+
+           Step           Time
+             46       46.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.24284e+01    4.01692e+01    3.75215e+01   -1.69112e+00   -5.33510e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.59580e+00    1.64470e+02   -2.79209e+02
+
+           Step           Time
+             47       47.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.24297e+01    4.18404e+01    3.75423e+01   -1.64124e+00   -5.33484e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.57116e+00    1.64476e+02   -2.77408e+02
+
+           Step           Time
+             48       48.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.24142e+01    4.35414e+01    3.75543e+01   -1.59488e+00   -5.33445e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.54852e+00    1.64481e+02   -2.75597e+02
+
+           Step           Time
+             49       49.00000
+
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.          LJ-14     Coulomb-14
+    2.24170e+01    4.53580e+01    3.75759e+01   -1.54122e+00   -5.33420e+02
+        LJ (SR)   Coulomb (SR)      Potential
+   -8.52284e+00    1.64489e+02   -2.73644e+02
+
+
+	M E G A - F L O P S   A C C O U N T I N G
+
+ NB=Group-cutoff nonbonded kernels    NxN=N-by-N cluster Verlet kernels
+ RF=Reaction-Field  VdW=Van der Waals  QSTab=quadratic-spline table
+ W3=SPC/TIP3p  W4=TIP4p (single or pairs)
+ V&F=Potential and force  V=Potential only  F=Force only
+
+ Computing:                               M-Number         M-Flops  % Flops
+-----------------------------------------------------------------------------
+ Pair Search distance check               0.005912           0.053     1.2
+ NxN RF Elec. + LJ [V&F]                  0.037952           2.049    44.8
+ NxN RF Electrostatics [V&F]              0.006048           0.218     4.8
+ 1,4 nonbonded interactions               0.004050           0.364     8.0
+ Shift-X                                  0.001600           0.010     0.2
+ Bonds                                    0.001550           0.091     2.0
+ Propers                                  0.005250           1.202    26.3
+ Virial                                   0.003850           0.069     1.5
+ Urey-Bradley                             0.002850           0.522    11.4
+-----------------------------------------------------------------------------
+ Total                                                       4.579   100.0
+-----------------------------------------------------------------------------
+
+
+      R E A L   C Y C L E   A N D   T I M E   A C C O U N T I N G
+
+On 1 MPI rank
+
+ Activity:              Num   Num      Call    Wall time         Giga-Cycles
+                        Ranks Threads  Count      (s)         total sum    %
+--------------------------------------------------------------------------------
+ Neighbor search           1    1         50       0.000          0.000   7.7
+ Force                     1    1         50       0.001          0.000  26.2
+ NB X/F buffer ops.        1    1         50       0.000          0.000   0.1
+ Rest                                              0.003          0.000  66.0
+--------------------------------------------------------------------------------
+ Total                                             0.004          0.000 100.0
+--------------------------------------------------------------------------------
+
+               Core t (s)   Wall t (s)        (%)
+       Time:        0.004        0.004       99.0
+                 (ns/day)    (hour/ns)
+Performance:     1111.346        0.022
+Finished mdrun on rank 0 Tue Nov  3 03:53:15 2026
+

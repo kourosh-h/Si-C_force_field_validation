@@ -1,0 +1,6 @@
+! HF 6-31G* Opt
+%geom Scan
+B 16 19 = 1.45, 1.59, 50
+end
+end
+* xyzfile 0 1 octylsilanetriol.xyz

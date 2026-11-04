@@ -1,0 +1,106 @@
+; Bonded parameters: bonds, angles with their Urey-Bradley terms, and dihedrals
+; written by make_force_field.py from ../ForceField
+
+[ bondtypes ]
+; i      j      func           b0             kb
+; CHARMM36: the alkyl chain, the silanol groups of the head group and TIP3P water
+CG321  CG321      1     0.15300000      186188.00
+CG321  CG331      1     0.15280000      186188.00
+CG321  HGA2       1     0.11110000      258571.20
+CG331  CG331      1     0.15300000      186188.00
+CG331  HGA3       1     0.11110000      269449.60
+SI     OSIH       1     0.16800000      271960.00
+HSIO   OSIH       1     0.09750000      473628.80
+HT     HT         1     0.15139000           0.00
+HT     OT         1     0.09572000      376560.00
+; INTERFACE force field of silica
+IOC24  IHOY       1   9.450000e-02   4.142160e+05
+ISC4   IOC23      1   1.680000e-01   2.384880e+05
+ISC4   IOC24      1   1.680000e-01   2.384880e+05
+ISC4   IOC25      1   1.680000e-01   2.384880e+05
+; the terms at the Si-C bond and at the bridge to the silica
+SI     CG321      1     0.18600000      132910.00
+SI     IOC25      1     0.16980000      252713.60
+
+[ angletypes ]
+; i      j      k      func         theta0        ktheta             s0            kub
+; CHARMM36: the alkyl chain, the silanol groups of the head group and TIP3P water
+CG321  CG321  CG321      5     113.600000     488.272800     0.25610000        9338.69
+CG321  CG321  CG331      5     115.000000     485.344000     0.25610000        6694.40
+CG321  CG321  HGA2       5     110.100000     221.752000     0.21790000       18853.10
+CG331  CG321  CG331      5     114.000000     446.432800     0.25610000        6694.40
+CG331  CG321  HGA2       5     110.100000     289.532800     0.21790000       18853.10
+HGA2   CG321  HGA2       5     109.000000     297.064000     0.18020000        4518.72
+CG321  CG331  HGA3       5     110.100000     289.532800     0.21790000       18853.10
+CG331  CG331  HGA3       5     110.100000     313.800000     0.21790000       18853.10
+HGA3   CG331  HGA3       5     108.400000     297.064000     0.18020000        4518.72
+SI     OSIH   HSIO       5     122.500000     284.512000     0.00000000           0.00
+OSIH   SI     OSIH       5     117.000000     251.040000     0.00000000           0.00
+HT     OT     HT         5     104.520000     460.240000     0.00000000           0.00
+; INTERFACE force field of silica
+IOC23  ISC4   IOC23      5  1.0950000e+02  8.3680000e+02  0.0000000e+00  0.0000000e+00
+IOC23  ISC4   IOC24      5  1.0950000e+02  8.3680000e+02  0.0000000e+00  0.0000000e+00
+IOC23  ISC4   IOC25      5  1.0950000e+02  8.3680000e+02  0.0000000e+00  0.0000000e+00
+IOC24  ISC4   IOC24      5  1.0950000e+02  8.3680000e+02  0.0000000e+00  0.0000000e+00
+IOC24  ISC4   IOC25      5  1.0950000e+02  8.3680000e+02  0.0000000e+00  0.0000000e+00
+IOC25  ISC4   IOC25      5  1.0950000e+02  8.3680000e+02  0.0000000e+00  0.0000000e+00
+ISC4   IOC23  ISC4       5  1.4900000e+02  8.3680000e+02  0.0000000e+00  0.0000000e+00
+ISC4   IOC24  IHOY       5  1.1500000e+02  4.1840000e+02  0.0000000e+00  0.0000000e+00
+; the terms at the Si-C bond and at the bridge to the silica
+SI     CG321  CG321      5     113.600000     488.272800      0.2842000        9338.69
+IOC25  SI     CG321      5     111.500000     376.560000     0.00000000           0.00
+OSIH   SI     CG321      5     110.100000     633.457600     0.00000000           0.00
+SI     CG321  HGA2       5     110.100000     221.752000     0.24730000       18853.10
+ISC4   IOC25  SI         5     150.000000     284.512000     0.00000000           0.00
+IOC25  SI     OSIH       5     126.000000     267.776000     0.00000000           0.00
+
+[ dihedraltypes ]
+; i      j      k      l      func           phi0           kphi  mult
+; CHARMM36: the alkyl chain, the silanol groups of the head group and TIP3P water
+CG321  CG321  CG321  CG321      9       0.000000       0.269868              2
+CG321  CG321  CG321  CG321      9     180.000000       0.626554              3
+CG321  CG321  CG321  CG321      9       0.000000       0.395723              4
+CG321  CG321  CG321  CG321      9       0.000000       0.470742              5
+CG321  CG321  CG321  CG331      9       0.000000       0.629734              2
+CG321  CG321  CG321  CG331      9     180.000000       0.340285              3
+CG321  CG321  CG321  CG331      9       0.000000       0.452876              4
+CG321  CG321  CG321  CG331      9       0.000000       0.853159              5
+CG321  CG321  CG321  HGA2       9       0.000000       0.815880              3
+CG331  CG321  CG321  CG331      9       0.000000       0.159787              2
+CG331  CG321  CG321  CG331      9     180.000000       0.132968              6
+CG331  CG321  CG321  HGA2       9       0.000000       0.753120              3
+HGA2   CG321  CG321  HGA2       9       0.000000       0.920480              3
+CG321  CG321  CG331  HGA3       9       0.000000       0.669440              3
+CG331  CG321  CG331  HGA3       9       0.000000       0.669440              3
+HGA2   CG321  CG331  HGA3       9       0.000000       0.669440              3
+HGA3   CG331  CG331  HGA3       9       0.000000       0.648520              3
+; INTERFACE force field of silica
+IHOY   IOC24  ISC4   IOC24      9   0.000000e+00   0.000000e+00              3
+IHOY   IOC24  ISC4   IOC25      9   0.000000e+00   0.000000e+00              3
+IOC23  ISC4   IOC24  IHOY       9   0.000000e+00   0.000000e+00              3
+IOC24  ISC4   IOC23  ISC4       9   0.000000e+00   0.000000e+00              3
+IOC25  ISC4   IOC23  ISC4       9   0.000000e+00   0.000000e+00              3
+ISC4   IOC23  ISC4   IOC23      9   0.000000e+00   0.000000e+00              2
+; the terms at the Si-C bond and at the bridge to the silica
+OSIH   SI     OSIH   HSIO       9       0.000000       1.464400              3
+ISC4   IOC25  SI     CG321      9       0.000000       2.384880              1
+ISC4   IOC25  SI     CG321      9       0.000000       1.213360              2
+ISC4   IOC25  SI     CG321      9       0.000000       1.799120              3
+HSIO   OSIH   SI     CG321      9       0.000000       4.727920              1
+HSIO   OSIH   SI     CG321      9       0.000000       0.585760              2
+HSIO   OSIH   SI     CG321      9       0.000000       1.004160              3
+ISC4   IOC25  SI     OSIH       9       0.000000       0.836800              3
+IOC25  SI     CG321  CG321      9     180.000000       0.669440              1
+IOC25  SI     CG321  CG321      9       0.000000       1.631760              2
+IOC25  SI     CG321  HGA2       9       0.000000       0.794960              3
+IOC25  SI     OSIH   HSIO       9       0.000000       1.255200              3
+IOC23  ISC4   IOC25  SI         9       0.000000       0.000000              3
+IOC24  ISC4   IOC25  SI         9       0.000000       0.502080              5
+IOC25  ISC4   IOC25  SI         9       0.000000       0.753120              5
+OSIH   SI     CG321  CG321      9       0.000000       0.815880              3
+OSIH   SI     CG321  HGA2       9       0.000000       0.815880              3
+SI     CG321  CG321  CG321      9       0.000000       0.269868              2
+SI     CG321  CG321  CG321      9     180.000000       0.626554              3
+SI     CG321  CG321  CG321      9       0.000000       0.395723              4
+SI     CG321  CG321  CG321      9       0.000000       0.470742              5
+SI     CG321  CG321  HGA2       9       0.000000       0.815800              3

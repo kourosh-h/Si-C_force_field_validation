@@ -1,0 +1,10 @@
+; The force field of alkylsilane monolayers on silica in water: CHARMM36, the INTERFACE force field of silica,
+; the terms at the Si-C bond and at the bridge to the silica, and CHARMM TIP3P water (tip3p.itp).
+; written by make_force_field.py from ../ForceField
+
+[ defaults ]
+; nbfunc  comb-rule  gen-pairs  fudgeLJ  fudgeQQ
+       1          2        yes      1.0      1.0
+
+#include "ffnonbonded.itp"
+#include "ffbonded.itp"

@@ -1,0 +1,16 @@
+; Minimum of the force-field energy of the molecule (conjugate gradients from the relaxed ORCA structure).
+; The molecule is much smaller than the 4 nm cut-off, so all its atom pairs are counted.
+integrator               = cg
+nsteps                   = 50000
+emtol                    = 0.1
+cutoff-scheme            = Verlet
+pbc                      = xyz
+verlet-buffer-tolerance  = -1
+rlist                    = 4.0
+coulombtype              = Cut-off
+rcoulomb                 = 4.0
+vdwtype                  = Cut-off
+rvdw                     = 4.0
+constraints              = none
+nstxout                  = 1
+nstenergy                = 1
